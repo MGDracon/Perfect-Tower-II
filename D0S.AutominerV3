@@ -8,8 +8,10 @@
 ; enter the mine or start the AI while in the mine, the program will run.
 wakeup()
 open.mine()
+key.m()
 
 isopen("mine")
+hasLayers()
 
 ; Our two state variables are "tab" and "pos". These get stored in the global state
 ; when an instance is about to end, so that each script instance is synced on what it
@@ -49,7 +51,7 @@ goto(if(\
     advance_state,\
     if(\
       should_loop,\
-      if(first_script, reset_state, waitframe),\
+      if(first_script, if(hasLayers(), reset_state, waitframe), waitframe),\
       abort\
     )\
   ),\
